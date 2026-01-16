@@ -447,6 +447,65 @@
             }
         }
 
+        /* شاشة التحميل */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .dark-mode .loading-screen {
+            background: linear-gradient(135deg, #0d1f0e 0%, #1a381b 100%);
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(46, 125, 50, 0.2);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* تذييل الصفحة */
+        .footer {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            color: var(--text-dark);
+            opacity: 0.7;
+            border-top: 1px solid rgba(46, 125, 50, 0.2);
+        }
+
         /* التكيف مع الشاشات الصغيرة */
         @media (max-width: 768px) {
             .header-container {
@@ -510,6 +569,12 @@
 </head>
 
 <body>
+    <!-- شاشة التحميل -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">جاري تحميل المحاضرات...</div>
+    </div>
+
     <!-- العناصر العائمة للخلفية -->
     <div class="floating-element" style="top:10%; left:5%;"></div>
     <div class="floating-element" style="top:20%; right:8%; width: 80px; height: 80px;"></div>
@@ -568,21 +633,124 @@
         <!-- المحاضرات سيتم إضافتها ديناميكيًا -->
     </div>
 
+    <!-- تذييل الصفحة -->
+    <div class="footer">
+        <p>© 2024 - جميع الحقوق محفوظة | موقع المحاسبة المتوسطة | UnKnown</p>
+        <p style="font-size: 14px; margin-top: 10px;">لأية استفسارات أو مقترحات: unknown@example.com</p>
+    </div>
+
     <script>
         // بيانات المحاضرات
         const lectures = [
-            { number: 1, title: "مقدمة في المحاسبة المتوسطة", author: "أحمد محمد", date: "2024-03-01", fileUrl: "https://drive.google.com/file/d/1MoRwPyJumBtU_Lpmllv9xKgMzDU_QgEC/view?usp=drive_link", available: true },
-            { number: 2, title: "المعايير المحاسبية الدولية", author: "أحمد محمد", date: "2024-03-08", available: false },
-            { number: 3, title: "الإطار النظري للمحاسبة", author: "أحمد محمد", date: "2024-03-15", available: false },
-            { number: 4, title: "القوائم المالية المتقدمة", author: "أحمد محمد", date: "2024-03-22", available: false },
-            { number: 5, title: "الأصول الثابتة والاستهلاك", author: "أحمد محمد", date: "2024-03-29", available: false },
-            { number: 6, title: "المخزون وطرق تقييمه", author: "أحمد محمد", date: "2024-04-05", available: false },
-            { number: 7, title: "الاستثمارات المالية", author: "أحمد محمد", date: "2024-04-12", available: false },
-            { number: 8, title: "حسابات القبض والمدينين", author: "أحمد محمد", date: "2024-04-19", available: false },
-            { number: 9, title: "الالتزامات والتقديرات", author: "أحمد محمد", date: "2024-04-26", available: false },
-            { number: 10, title: "حقوق المساهمين", author: "أحمد محمد", date: "2024-05-03", available: false },
-            { number: 11, title: "تقرير التدفقات النقدية", author: "أحمد محمد", date: "2024-05-10", available: false },
-            { number: 12, title: "المحاسبة عن الفروع", author: "أحمد محمد", date: "2024-05-17", available: false }
+            { 
+                number: 1, 
+                title: "مقدمة في المحاسبة المتوسطة", 
+                author: "أحمد محمد", 
+                date: "2024-03-01", 
+                fileUrl: "https://drive.google.com/file/d/1MoRwPyJumBtU_Lpmllv9xKgMzDU_QgEC/view?usp=drive_link", 
+                available: true,
+                fileSize: "2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 2, 
+                title: "المعايير المحاسبية الدولية", 
+                author: "أحمد محمد", 
+                date: "2024-03-08", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 3, 
+                title: "الإطار النظري للمحاسبة", 
+                author: "أحمد محمد", 
+                date: "2024-03-15", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 4, 
+                title: "القوائم المالية المتقدمة", 
+                author: "أحمد محمد", 
+                date: "2024-03-22", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 5, 
+                title: "الأصول الثابتة والاستهلاك", 
+                author: "أحمد محمد", 
+                date: "2024-03-29", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 6, 
+                title: "المخزون وطرق تقييمه", 
+                author: "أحمد محمد", 
+                date: "2024-04-05", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 7, 
+                title: "الاستثمارات المالية", 
+                author: "أحمد محمد", 
+                date: "2024-04-12", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 8, 
+                title: "حسابات القبض والمدينين", 
+                author: "أحمد محمد", 
+                date: "2024-04-19", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 9, 
+                title: "الالتزامات والتقديرات", 
+                author: "أحمد محمد", 
+                date: "2024-04-26", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 10, 
+                title: "حقوق المساهمين", 
+                author: "أحمد محمد", 
+                date: "2024-05-03", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 11, 
+                title: "تقرير التدفقات النقدية", 
+                author: "أحمد محمد", 
+                date: "2024-05-10", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            },
+            { 
+                number: 12, 
+                title: "المحاسبة عن الفروع", 
+                author: "أحمد محمد", 
+                date: "2024-05-17", 
+                available: false,
+                fileSize: "~2.5 MB",
+                fileType: "PDF"
+            }
         ];
 
         // تحديث الإحصائيات
@@ -601,6 +769,17 @@
             const container = document.getElementById('lecturesContainer');
             container.innerHTML = '';
             
+            if (filteredLectures.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dark);">
+                        <i class="fas fa-search" style="font-size: 60px; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h2 style="margin-bottom: 10px;">لم يتم العثور على محاضرات</h2>
+                        <p>حاول البحث بكلمات مختلفة أو قم بإعادة تعيين الفلتر</p>
+                    </div>
+                `;
+                return;
+            }
+            
             filteredLectures.forEach(lecture => {
                 const lectureCard = document.createElement('div');
                 lectureCard.className = 'lecture-card';
@@ -610,7 +789,7 @@
                     '<span class="availability-badge unavailable-badge">غير متاحة</span>';
                 
                 const downloadButton = lecture.available ?
-                    `<a href="#" class="download-btn" onclick="downloadLecture(${lecture.number})">
+                    `<a href="${lecture.fileUrl}" target="_blank" class="download-btn" onclick="downloadLecture(${lecture.number})">
                         <i class="fas fa-download"></i> تحميل
                     </a>` :
                     `<span class="download-btn disabled-btn">
@@ -638,17 +817,17 @@
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-file-alt"></i>
-                                <span>نوع الملف: PDF</span>
+                                <span>نوع الملف: ${lecture.fileType}</span>
                             </div>
                             <div class="detail-item">
                                 <i class="fas fa-weight"></i>
-                                <span>حجم الملف: ~2.5 ميجابايت</span>
+                                <span>حجم الملف: ${lecture.fileSize}</span>
                             </div>
                         </div>
                     </div>
                     <div class="lecture-actions">
                         ${downloadButton}
-                        <a href="#" class="preview-btn" onclick="previewLecture(${lecture.number})">
+                        <a href="#" class="preview-btn" onclick="previewLecture(${lecture.number}, event)">
                             <i class="fas fa-eye"></i> معاينة
                         </a>
                     </div>
@@ -686,19 +865,80 @@
             const lecture = lectures.find(l => l.number === lectureNumber);
             if (lecture && lecture.available) {
                 showMessage(`جاري تحميل المحاضرة ${lectureNumber}: ${lecture.title}`, 'success');
-                // هنا يمكن إضافة كود التحميل الفعلي
+                // يمكن إضافة كود التحميل الفعلي هنا
+                simulateDownload(lectureNumber);
             } else {
                 showMessage('هذه المحاضرة غير متاحة للتحميل حالياً', 'error');
             }
         }
 
-        // محاكاة معاينة المحاضرة
-        function previewLecture(lectureNumber) {
+        // محاكاة المعاينة
+        function previewLecture(lectureNumber, event) {
+            event.preventDefault();
             const lecture = lectures.find(l => l.number === lectureNumber);
             if (lecture) {
-                showMessage(`معاينة المحاضرة ${lectureNumber}: ${lecture.title}`, 'info');
-                // هنا يمكن إضافة كود المعاينة الفعلية
+                if (lecture.available) {
+                    showMessage(`سيتم فتح معاينة المحاضرة ${lectureNumber}: ${lecture.title}`, 'info');
+                    // في الواقع، قد تفتح نافذة منبثقة أو ترسل المستخدم إلى صفحة المعاينة
+                    window.open(lecture.fileUrl, '_blank');
+                } else {
+                    showMessage('المعاينة غير متاحة لهذه المحاضرة حالياً', 'warning');
+                }
             }
+        }
+
+        // محاكاة عملية التحميل
+        function simulateDownload(lectureNumber) {
+            const progressMessage = showProgressMessage(`جاري تحميل المحاضرة ${lectureNumber}...`);
+            
+            setTimeout(() => {
+                updateProgressMessage(progressMessage, 'اكتمل التحميل بنجاح!', 'success');
+            }, 2000);
+        }
+
+        // عرض رسالة تقدم
+        function showProgressMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--primary-color);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 600;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            messageDiv.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${message}`;
+            messageDiv.id = 'progressMessage';
+            document.body.appendChild(messageDiv);
+            
+            return messageDiv;
+        }
+
+        // تحديث رسالة التقدم
+        function updateProgressMessage(messageDiv, newMessage, type = 'success') {
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const color = type === 'success' ? '#2e7d32' : '#f44336';
+            
+            messageDiv.innerHTML = `<i class="fas ${icon}"></i> ${newMessage}`;
+            messageDiv.style.background = color;
+            
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        document.body.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 3000);
         }
 
         // عرض رسالة للمستخدم
@@ -738,7 +978,9 @@
             setTimeout(() => {
                 messageDiv.style.animation = 'slideOut 0.3s ease-out';
                 setTimeout(() => {
-                    document.body.removeChild(messageDiv);
+                    if (messageDiv.parentNode) {
+                        document.body.removeChild(messageDiv);
+                    }
                 }, 300);
             }, 3000);
         }
@@ -792,6 +1034,16 @@
             }
         });
 
+        // إخفاء شاشة التحميل
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.add('hidden');
+            
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+
         // إضافة مستمعي الأحداث
         document.getElementById('searchInput').addEventListener('input', filterLectures);
         document.getElementById('filterSelect').addEventListener('change', filterLectures);
@@ -803,13 +1055,39 @@
 
         // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            renderLectures();
+            // محاكاة وقت التحميل
+            setTimeout(() => {
+                renderLectures();
+                hideLoadingScreen();
+            }, 1000);
+        });
+
+        // إضافة تأثير تحميل عند التمرير
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // مراقبة عناصر المحاضرات
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const lectureCards = document.querySelectorAll('.lecture-card');
+                lectureCards.forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(card);
+                });
+            }, 100);
         });
     </script>
 </body>
 </html>
-</html>
-
-
-
-
