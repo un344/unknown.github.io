@@ -1,234 +1,781 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" defer></script>
-    <title>Contributors - Summaries & Notes</title>
+    <title>🤝 المساهمون - UnKnown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* ✅ إعدادات عامة */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            color: #2e7d32;
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #f5f5f5;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .dark-mode {
+            --primary-color: #4caf50;
+            --primary-light: #66bb6a;
+            --primary-dark: #388e3c;
+            --secondary-color: #1e1e1e;
+            --text-dark: #f0f0f0;
+            --text-light: #ffffff;
+            --card-bg: #2d2d2d;
+            --shadow: rgba(0, 0, 0, 0.2);
+            --shadow-hover: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Almarai', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 20px;
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0d1f0e 0%, #1a381b 100%);
+        }
+
+        /* تصميم الشريط العلوي */
+        .header-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header {
             text-align: center;
-            padding: 20px;
-            transition: 0.3s ease-in-out;
+            flex-grow: 1;
         }
 
-        /* ✅ صندوق المحتوى */
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 90%;
-            transition: 0.3s ease-in-out;
+        .main-title {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
         }
 
-        /* ✅ جعل الجدول أكثر توافقًا مع الأجهزة الصغيرة */
+        .subtitle {
+            font-size: 16px;
+            color: var(--primary-dark);
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .dark-mode .subtitle {
+            color: var(--primary-light);
+        }
+
+        /* أزرار التحكم */
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .theme-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .theme-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px var(--shadow-hover);
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* تصميم الصندوق الرئيسي */
+        .main-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 1000px;
+            width: 100%;
+            box-shadow: 0 15px 35px var(--shadow);
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            font-size: 32px;
+        }
+
+        /* تصميم الجدول */
         .table-container {
             width: 100%;
             overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            table-layout: fixed;
+            min-width: 600px;
         }
 
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-            word-wrap: break-word;
+        thead {
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
         }
 
         th {
-            background: #388e3c;
             color: white;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 20px 15px;
+            text-align: center;
+            border: none;
         }
 
-        /* ✅ إدخال المتعاونين */
-        input, button {
-            width: 90%;
-            padding: 12px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+        tbody tr {
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+        }
+
+        tbody tr:hover {
+            background: rgba(46, 125, 50, 0.05);
+            transform: translateX(-5px);
+        }
+
+        td {
+            padding: 18px 15px;
+            text-align: center;
             font-size: 16px;
-            transition: 0.3s ease-in-out;
+            font-weight: 500;
+            color: var(--text-dark);
+            border: none;
         }
 
-        button {
-            background: #388e3c;
+        .contributor-number {
+            background: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 700;
+        }
+
+        .contributor-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .contributor-subject {
+            background: rgba(46, 125, 50, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* قسم إضافة مساهم جديد */
+        .add-contributor-section {
+            background: rgba(46, 125, 50, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 1px dashed var(--primary-color);
+        }
+
+        .add-contributor-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-input {
+            padding: 16px 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(46, 125, 50, 0.2);
+            background: var(--card-bg);
+            color: var(--text-dark);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        .add-btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
             color: white;
             border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        button:hover {
-            background: #2e7d32;
+        .add-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.2);
         }
 
-        /* ✅ زر الرجوع */
-        .back-btn {
-            margin-top: 15px;
-            display: inline-block;
-            padding: 10px 20px;
-            background: #388e3c;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: 0.3s ease-in-out;
+        /* إحصائيات المساهمين */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
-        .back-btn:hover {
-            background: #2e7d32;
-        }
-         /* ✅ الوضع الليلي */
-        .dark-mode {
-            background: #1e1e1e;
-            color: #f5f5f5;
-        }
-
-        .dark-mode .container {
-            background: #333;
-            color: white;
-            border: 1px solid #444;
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 8px 20px var(--shadow);
+            border-top: 5px solid var(--primary-color);
+            transition: var(--transition);
         }
 
-        .dark-mode table, .dark-mode th, .dark-mode td {
-            border: 1px solid #555;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px var(--shadow-hover);
         }
 
-        .dark-mode th {
-            background: #444;
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
 
-        .dark-mode input, .dark-mode button {
-            background: #444;
-            color: white;
-            border: 1px solid #666;
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* تأثيرات إضافية */
+        .floating-element {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 100px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, 200px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-100px, 100px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .main-container {
+                padding: 25px 20px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            th, td {
+                padding: 15px 10px;
+                font-size: 15px;
+            }
+
+            .add-contributor-section {
+                padding: 20px;
+            }
+
+            .input-group {
+                width: 100%;
+            }
+
+            .stats-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 30px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            .table-container {
+                border-radius: 8px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <!-- العناصر العائمة للخلفية -->
+    <div class="floating-element" style="top:10%; left:5%;"></div>
+    <div class="floating-element" style="top:20%; right:8%; width: 80px; height: 80px;"></div>
+    <div class="floating-element" style="bottom:30%; left:15%; width: 40px; height: 40px;"></div>
 
-    <header>🤝 Our Contributors</header>
+    <!-- الهيدر وأزرار التحكم -->
+    <div class="header-container">
+        <header>
+            <h1 class="main-title">🤝 المساهمون</h1>
+            <p class="subtitle">فريق العمل الذي ساهم في إثراء المحتوى التعليمي</p>
+        </header>
+        <div class="control-buttons">
+            <button class="btn theme-btn" id="themeButton">
+                <i class="fas fa-moon"></i> الوضع الليلي
+            </button>
+            <a href="index.html" class="btn back-btn">
+                <i class="fas fa-arrow-right"></i> العودة للرئيسية
+            </a>
+        </div>
+    </div>
 
-    <div class="container">
-        <h3>📜 Contributors List</h3>
+    <!-- إحصائيات المساهمين -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number" id="totalContributors">8</div>
+            <div class="stat-label">إجمالي المساهمين</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="totalSubjects">8</div>
+            <div class="stat-label">عدد المواد</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="recentContributors">0</div>
+            <div class="stat-label">مساهمون جدد</div>
+        </div>
+    </div>
+
+    <!-- الصندوق الرئيسي -->
+    <div class="main-container">
+        <div class="section-title">
+            <i class="fas fa-users"></i>
+            <span>قائمة المساهمين</span>
+        </div>
+
+        <!-- جدول المساهمين -->
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>subject</th>
+                        <th style="width: 15%;">#</th>
+                        <th style="width: 40%;">اسم المساهم</th>
+                        <th style="width: 45%;">المادة</th>
                     </tr>
-                    <tr>
-                        <th>1</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>6</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>7</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>8</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    
                 </thead>
                 <tbody id="contributorList">
-                    <!-- Contributors will be added here dynamically -->
+                    <!-- سيتم ملء القائمة ديناميكيًا -->
+                    <tr>
+                        <td><div class="contributor-number">1</div></td>
+                        <td class="contributor-name">أحمد محمد</td>
+                        <td><span class="contributor-subject">المحاسبة المتوسطة</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">2</div></td>
+                        <td class="contributor-name">سارة خالد</td>
+                        <td><span class="contributor-subject">الاقتصاد</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">3</div></td>
+                        <td class="contributor-name">عمر حسن</td>
+                        <td><span class="contributor-subject">الإحصاء الاستدلالي</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">4</div></td>
+                        <td class="contributor-name">فاطمة علي</td>
+                        <td><span class="contributor-subject">المالية العامة</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">5</div></td>
+                        <td class="contributor-name">محمد إبراهيم</td>
+                        <td><span class="contributor-subject">التسويق</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">6</div></td>
+                        <td class="contributor-name">نورة سعيد</td>
+                        <td><span class="contributor-subject">العلوم السياسية</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">7</div></td>
+                        <td class="contributor-name">خالد عبدالله</td>
+                        <td><span class="contributor-subject">نظم المعلومات المحاسبية</span></td>
+                    </tr>
+                    <tr>
+                        <td><div class="contributor-number">8</div></td>
+                        <td class="contributor-name">لطيفة ناصر</td>
+                        <td><span class="contributor-subject">اللغة الإنجليزية</span></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
+
+        <!-- قسم إضافة مساهم جديد -->
+        <div class="add-contributor-section">
+            <div class="add-contributor-title">
+                <i class="fas fa-user-plus"></i>
+                <span>إضافة مساهم جديد</span>
+            </div>
+            <div class="input-group">
+                <input type="text" id="name" class="form-input" placeholder="اسم المساهم" required>
+                <select id="subject" class="form-input">
+                    <option value="">اختر المادة</option>
+                    <option value="المحاسبة المتوسطة">المحاسبة المتوسطة</option>
+                    <option value="الاقتصاد">الاقتصاد</option>
+                    <option value="الإحصاء الاستدلالي">الإحصاء الاستدلالي</option>
+                    <option value="المالية العامة">المالية العامة</option>
+                    <option value="التسويق">التسويق</option>
+                    <option value="العلوم السياسية">العلوم السياسية</option>
+                    <option value="نظم المعلومات المحاسبية">نظم المعلومات المحاسبية</option>
+                    <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                    <option value="مادة أخرى">مادة أخرى</option>
+                </select>
+                <input type="text" id="customSubject" class="form-input" placeholder="أدخل اسم المادة (إذا اخترت 'مادة أخرى')" style="display: none;">
+                <button class="add-btn" id="addContributorBtn">
+                    <i class="fas fa-plus-circle"></i>
+                    إضافة مساهم
+                </button>
+            </div>
+        </div>
     </div>
 
-    <a href="index.html" class="back-btn">⬅ Back to Home</a>
-
     <script>
-        let contributors = [];
+        // بيانات المساهمين الأولية
+        let contributors = [
+            { name: "أحمد محمد", subject: "المحاسبة المتوسطة" },
+            { name: "سارة خالد", subject: "الاقتصاد" },
+            { name: "عمر حسن", subject: "الإحصاء الاستدلالي" },
+            { name: "فاطمة علي", subject: "المالية العامة" },
+            { name: "محمد إبراهيم", subject: "التسويق" },
+            { name: "نورة سعيد", subject: "العلوم السياسية" },
+            { name: "خالد عبدالله", subject: "نظم المعلومات المحاسبية" },
+            { name: "لطيفة ناصر", subject: "اللغة الإنجليزية" }
+        ];
 
-        function addContributor() {
-            let name = document.getElementById("name").value;
-            let role = document.getElementById("role").value;
+        let recentContributorsCount = 0;
 
-            if (name === "" || role === "") {
-                alert("Please enter both name and role.");
-                return;
-            }
-
-            contributors.push({ name, role });
-
-            updateContributorList();
-            document.getElementById("name").value = "";
-            document.getElementById("role").value = "";
+        // تحديث الإحصائيات
+        function updateStats() {
+            document.getElementById('totalContributors').textContent = contributors.length;
+            document.getElementById('totalSubjects').textContent = 8; // عدد المواد الثابت
+            document.getElementById('recentContributors').textContent = recentContributorsCount;
         }
 
+        // تحديث جدول المساهمين
         function updateContributorList() {
             let tableBody = document.getElementById("contributorList");
             tableBody.innerHTML = "";
 
             contributors.forEach((contributor, index) => {
                 let row = `<tr>
-                    <td>${index + 1}</td>
-                    <td>${contributor.name}</td>
-                    <td>${contributor.role}</td>
+                    <td><div class="contributor-number">${index + 1}</div></td>
+                    <td class="contributor-name">${contributor.name}</td>
+                    <td><span class="contributor-subject">${contributor.subject}</span></td>
                 </tr>`;
                 tableBody.innerHTML += row;
             });
+            
+            updateStats();
         }
-    </script>
 
+        // إضافة مساهم جديد
+        function addContributor() {
+            let name = document.getElementById("name").value;
+            let subjectSelect = document.getElementById("subject");
+            let selectedSubject = subjectSelect.value;
+            let customSubject = document.getElementById("customSubject").value;
+            
+            let subject = selectedSubject;
+            
+            // إذا تم اختيار "مادة أخرى"
+            if (selectedSubject === "مادة أخرى") {
+                if (customSubject.trim() === "") {
+                    alert("يرجى إدخال اسم المادة");
+                    return;
+                }
+                subject = customSubject;
+            }
+            
+            if (name.trim() === "" || subject === "") {
+                alert("يرجى إدخال اسم المساهم واختيار المادة");
+                return;
+            }
+
+            contributors.push({ name, subject });
+            recentContributorsCount++;
+            
+            updateContributorList();
+            
+            // إعادة تعيين الحقول
+            document.getElementById("name").value = "";
+            subjectSelect.value = "";
+            document.getElementById("customSubject").value = "";
+            document.getElementById("customSubject").style.display = "none";
+            
+            // عرض رسالة نجاح
+            showSuccessMessage(`تم إضافة ${name} كمساهم في مادة ${subject}`);
+        }
+
+        // عرض رسالة نجاح
+        function showSuccessMessage(message) {
+            // إنشاء عنصر الرسالة
+            let messageDiv = document.createElement('div');
+            messageDiv.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(90deg, #2e7d32, #4caf50);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-weight: 600;
+                    animation: slideIn 0.3s ease-out;
+                ">
+                    <i class="fas fa-check-circle"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(messageDiv);
+            
+            // إزالة الرسالة بعد 3 ثوان
+            setTimeout(() => {
+                messageDiv.style.animation = "slideOut 0.3s ease-out";
+                setTimeout(() => {
+                    document.body.removeChild(messageDiv);
+                }, 300);
+            }, 3000);
+        }
+
+        // تبديل الوضع الليلي
+        const themeButton = document.getElementById('themeButton');
+        const body = document.body;
+        
+        // التحقق من التفضيل المحفوظ
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            themeButton.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
+        }
+        
+        themeButton.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                themeButton.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                themeButton.innerHTML = '<i class="fas fa-moon"></i> الوضع الليلي';
+            }
+        });
+
+        // التحكم في حقل المادة المخصصة
+        document.getElementById('subject').addEventListener('change', function() {
+            const customSubjectInput = document.getElementById('customSubject');
+            if (this.value === 'مادة أخرى') {
+                customSubjectInput.style.display = 'block';
+            } else {
+                customSubjectInput.style.display = 'none';
+                customSubjectInput.value = '';
+            }
+        });
+
+        // إضافة أنماط CSS للرسائل المتحركة
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // إضافة مستمع حدث لزر الإضافة
+        document.getElementById('addContributorBtn').addEventListener('click', addContributor);
+
+        // السماح بإضافة المساهم باستخدام زر Enter
+        document.getElementById('name').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addContributor();
+            }
+        });
+
+        document.getElementById('subject').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addContributor();
+            }
+        });
+
+        document.getElementById('customSubject').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addContributor();
+            }
+        });
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateContributorList();
+        });
+    </script>
 </body>
 </html>
