@@ -808,12 +808,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lecture-actions">
-                        ${downloadButton}
-                        <a href="#" class="preview-btn" onclick="previewLecture(${lecture.number}, event)">
-                            <i class="fas fa-eye"></i> معاينة
-                        </a>
-                    </div>
                 `;
                 
                 container.appendChild(lectureCard);
@@ -854,22 +848,6 @@
                 showMessage('هذه المحاضرة غير متاحة للتحميل حالياً', 'error');
             }
         }
-
-        // محاكاة المعاينة
-    //     function previewLecture(lectureNumber, event) {
-        //    event.preventDefault();
-          //  const lecture = lectures.find(l => l.number === lectureNumber);
-         //   if (lecture) {
-           //     if (lecture.available) {
-           //         showMessage(`سيتم فتح معاينة المحاضرة ${lectureNumber}: ${lecture.title}`, 'info');
-                    // في الواقع، قد تفتح نافذة منبثقة أو ترسل المستخدم إلى صفحة المعاينة
-          //          window.open(lecture.fileUrl, '_blank');
-        //        } else {
-       //             showMessage('المعاينة غير متاحة لهذه المحاضرة حالياً', 'warning');
-        //        }
-     //       }
-   //     }
-
         // محاكاة عملية التحميل
         function simulateDownload(lectureNumber) {
             const progressMessage = showProgressMessage(`جاري تحميل المحاضرة ${lectureNumber}...`);
@@ -1074,6 +1052,7 @@
     </script>
 </body>
 </html>
+
 
 
 
