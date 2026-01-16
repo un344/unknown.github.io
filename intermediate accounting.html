@@ -873,19 +873,19 @@
         }
 
         // محاكاة المعاينة
-        function previewLecture(lectureNumber, event) {
-            event.preventDefault();
-            const lecture = lectures.find(l => l.number === lectureNumber);
-            if (lecture) {
-                if (lecture.available) {
-                    showMessage(`سيتم فتح معاينة المحاضرة ${lectureNumber}: ${lecture.title}`, 'info');
+    //     function previewLecture(lectureNumber, event) {
+        //    event.preventDefault();
+          //  const lecture = lectures.find(l => l.number === lectureNumber);
+         //   if (lecture) {
+           //     if (lecture.available) {
+           //         showMessage(`سيتم فتح معاينة المحاضرة ${lectureNumber}: ${lecture.title}`, 'info');
                     // في الواقع، قد تفتح نافذة منبثقة أو ترسل المستخدم إلى صفحة المعاينة
-                    window.open(lecture.fileUrl, '_blank');
-                } else {
-                    showMessage('المعاينة غير متاحة لهذه المحاضرة حالياً', 'warning');
-                }
-            }
-        }
+          //          window.open(lecture.fileUrl, '_blank');
+        //        } else {
+       //             showMessage('المعاينة غير متاحة لهذه المحاضرة حالياً', 'warning');
+        //        }
+     //       }
+   //     }
 
         // محاكاة عملية التحميل
         function simulateDownload(lectureNumber) {
@@ -1091,3 +1091,4 @@
     </script>
 </body>
 </html>
+
