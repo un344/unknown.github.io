@@ -305,9 +305,9 @@
             width: 20px;
         }
 
+        /* زر التحميل فقط - بدون زر المعاينة */
         .lecture-actions {
             display: flex;
-            gap: 15px;
             margin-top: 20px;
             position: relative;
             z-index: 1;
@@ -316,7 +316,7 @@
         .download-btn {
             background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
             color: white;
-            padding: 12px 25px;
+            padding: 14px 25px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
@@ -326,12 +326,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 16px;
         }
 
         .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.2);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
         }
 
         .disabled-btn {
@@ -343,12 +345,7 @@
         .disabled-btn:hover {
             transform: none;
             box-shadow: none;
-        }
-
-        .preview-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
+            background: #cccccc;
         }
 
         /* قسم التصفية والبحث */
@@ -513,10 +510,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
-            }
-
-            .lecture-actions {
-                flex-direction: column;
             }
 
             .stats-container {
@@ -748,20 +741,20 @@
         }
 
         // عرض المحاضرات
-      function renderLectures(filteredLectures = lectures) {
-         const container = document.getElementById('lecturesContainer');
-         container.innerHTML = '';
+        function renderLectures(filteredLectures = lectures) {
+            const container = document.getElementById('lecturesContainer');
+            container.innerHTML = '';
             
             if (filteredLectures.length === 0) {
-               container.innerHTML = `
-                  <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dark);">
-                       <i class="fas fa-search" style="font-size: 60px; margin-bottom: 20px; opacity: 0.5;"></i>
-                       <h2 style="margin-bottom: 10px;">لم يتم العثور على محاضرات</h2>
-                      <p>حاول البحث بكلمات مختلفة أو قم بإعادة تعيين الفلتر</p>
-                </div>
-            `;
-               return;
-           }
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px; color: var(--text-dark);">
+                        <i class="fas fa-search" style="font-size: 60px; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h2 style="margin-bottom: 10px;">لم يتم العثور على محاضرات</h2>
+                        <p>حاول البحث بكلمات مختلفة أو قم بإعادة تعيين الفلتر</p>
+                    </div>
+                `;
+                return;
+            }
             
             filteredLectures.forEach(lecture => {
                 const lectureCard = document.createElement('div');
@@ -773,10 +766,10 @@
                 
                 const downloadButton = lecture.available ?
                     `<a href="${lecture.fileUrl}" target="_blank" class="download-btn" onclick="downloadLecture(${lecture.number})">
-                        <i class="fas fa-download"></i> تحميل
+                        <i class="fas fa-download"></i> تحميل المحاضرة
                     </a>` :
                     `<span class="download-btn disabled-btn">
-                        <i class="fas fa-clock"></i> قريباً
+                        <i class="fas fa-clock"></i> المحاضرة غير متاحة
                     </span>`;
                 
                 lectureCard.innerHTML = `
@@ -807,6 +800,9 @@
                                 <span>حجم الملف: ${lecture.fileSize}</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="lecture-actions">
+                        ${downloadButton}
                     </div>
                 `;
                 
@@ -848,6 +844,7 @@
                 showMessage('هذه المحاضرة غير متاحة للتحميل حالياً', 'error');
             }
         }
+
         // محاكاة عملية التحميل
         function simulateDownload(lectureNumber) {
             const progressMessage = showProgressMessage(`جاري تحميل المحاضرة ${lectureNumber}...`);
@@ -1052,8 +1049,6 @@
     </script>
 </body>
 </html>
-
-
 
 
 
