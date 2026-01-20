@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📖 من نحن - UnKnown</title>
+    <title>من نحن - UnKnown</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2e7d32;
+            --primary: #2e7d32;
             --primary-light: #4caf50;
             --primary-dark: #1b5e20;
-            --secondary-color: #f5f5f5;
-            --text-dark: #1a1a1a;
-            --text-light: #ffffff;
+            --secondary: #f5f5f5;
+            --text: #333;
             --card-bg: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.08);
-            --shadow-hover: rgba(0, 0, 0, 0.15);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow: rgba(0,0,0,0.1);
         }
 
         .dark-mode {
-            --primary-color: #4caf50;
+            --primary: #4caf50;
             --primary-light: #66bb6a;
             --primary-dark: #388e3c;
-            --secondary-color: #1e1e1e;
-            --text-dark: #f0f0f0;
-            --text-light: #ffffff;
-            --card-bg: #2d2d2d;
-            --shadow: rgba(0, 0, 0, 0.2);
-            --shadow-hover: rgba(0, 0, 0, 0.3);
+            --secondary: #2d2d2d;
+            --text: #f5f5f5;
+            --card-bg: #3a3a3a;
+            --shadow: rgba(0,0,0,0.3);
         }
 
         * {
@@ -40,633 +34,326 @@
         }
 
         body {
-            font-family: 'Tajawal', 'Almarai', sans-serif;
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            color: var(--text-dark);
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            color: var(--text);
             min-height: 100vh;
             padding: 20px;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            transition: all 0.3s;
         }
 
         body.dark-mode {
-            background: linear-gradient(135deg, #0d1f0e 0%, #1a381b 100%);
+            background: linear-gradient(135deg, #1a381b, #0d1f0e);
         }
 
-        /* تصميم الشريط العلوي */
-        .header-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 40px;
+        /* الهيدر */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
         }
 
-        header {
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .main-title {
-            font-size: 42px;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 5px;
-            letter-spacing: -0.5px;
-        }
-
         .subtitle {
+            color: var(--primary);
             font-size: 16px;
-            color: var(--primary-dark);
             opacity: 0.8;
-            font-weight: 500;
-        }
-
-        .dark-mode .subtitle {
-            color: var(--primary-light);
         }
 
         /* أزرار التحكم */
-        .control-buttons {
+        .controls {
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
             border: none;
             font-family: 'Tajawal', sans-serif;
             font-weight: 600;
-            font-size: 16px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            box-shadow: 0 4px 12px var(--shadow);
             text-decoration: none;
         }
 
-        .theme-btn {
-            background: var(--primary-color);
+        .btn-primary {
+            background: var(--primary);
             color: white;
         }
 
-        .theme-btn:hover {
+        .btn-primary:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px var(--shadow-hover);
+            transform: translateY(-2px);
         }
 
-        .back-btn {
+        .btn-secondary {
             background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
-        .back-btn:hover {
-            background: var(--primary-color);
+        .btn-secondary:hover {
+            background: var(--primary);
             color: white;
-            transform: translateY(-3px);
         }
 
-        /* الصندوق الرئيسي */
-        .main-container {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 1000px;
-            width: 100%;
-            box-shadow: 0 15px 35px var(--shadow);
-            border: 1px solid rgba(46, 125, 50, 0.1);
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-        }
-
-        /* بطاقة تعريف */
-        .identity-card {
-            background: linear-gradient(135deg, rgba(46, 125, 50, 0.05), rgba(76, 175, 80, 0.05));
-            border-radius: 15px;
-            padding: 35px;
-            text-align: center;
-            margin-bottom: 40px;
-            border: 1px solid rgba(46, 125, 50, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .identity-card::before {
-            content: '📚';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 120px;
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        .platform-name {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .platform-slogan {
-            font-size: 18px;
-            color: var(--text-dark);
-            opacity: 0.8;
-            max-width: 600px;
+        /* المحتوى الرئيسي */
+        .container {
+            max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* أقسام المحتوى */
-        .section {
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(46, 125, 50, 0.1);
-        }
-
-        .section-title i {
-            font-size: 30px;
-        }
-
-        .section-content {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-dark);
-            padding-right: 10px;
-        }
-
-        /* بطاقات المميزات */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(46, 125, 50, 0.1);
-            box-shadow: 0 8px 20px var(--shadow);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px var(--shadow-hover);
-            border-color: var(--primary-color);
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            height: 80px;
-            width: 80px;
-            background: rgba(46, 125, 50, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .feature-desc {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-
-        /* قسم الرسالة */
-        .message-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .message-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            animation: floatBackground 60s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes floatBackground {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .message-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .message-content {
-            font-size: 18px;
-            line-height: 1.8;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* قسم المؤسس */
-        .founder-card {
             background: var(--card-bg);
             border-radius: 15px;
             padding: 30px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-top: 40px;
-            border: 1px solid rgba(46, 125, 50, 0.1);
-            box-shadow: 0 8px 20px var(--shadow);
+            box-shadow: 0 5px 20px var(--shadow);
+            border-top: 5px solid var(--primary);
         }
 
-        .founder-icon {
-            font-size: 60px;
-            color: var(--primary-color);
-            background: rgba(46, 125, 50, 0.1);
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+        /* الأقسام */
+        .section {
+            margin-bottom: 30px;
         }
 
-        .founder-info {
-            text-align: right;
-        }
-
-        .founder-title {
+        .section-title {
             font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* المواد */
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .subject {
+            background: rgba(46, 125, 50, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .subject:hover {
+            background: rgba(46, 125, 50, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* المميزات */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px var(--shadow);
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+
+        .feature i {
+            font-size: 30px;
+            color: var(--primary);
             margin-bottom: 10px;
         }
 
+        /* الرسالة */
+        .message {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* المؤسس */
+        .founder {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            margin-top: 20px;
+        }
+
         .founder-name {
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 10px 0;
         }
 
-        .founder-desc {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-
-        /* تأثيرات إضافية */
-        .floating-element {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 50%;
-            z-index: -1;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(100px, 100px) rotate(90deg);
-            }
-            50% {
-                transform: translate(0, 200px) rotate(180deg);
-            }
-            75% {
-                transform: translate(-100px, 100px) rotate(270deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
-        }
-
-        /* التكيف مع الشاشات الصغيرة */
+        /* التجاوب */
         @media (max-width: 768px) {
-            .header-container {
+            .header h1 {
+                font-size: 28px;
                 flex-direction: column;
-                text-align: center;
+                gap: 10px;
             }
-
-            .main-title {
-                font-size: 36px;
-            }
-
-            .main-container {
-                padding: 25px 20px;
-            }
-
-            .platform-name {
-                font-size: 30px;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .section-content {
-                font-size: 16px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .founder-card {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-
-            .founder-info {
-                text-align: center;
-            }
-
-            .message-section {
-                padding: 25px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 30px;
-            }
-
-            .section-title {
-                font-size: 22px;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 15px;
-            }
-
-            .feature-card {
+            
+            .container {
                 padding: 20px;
             }
-
-            .identity-card {
-                padding: 25px 20px;
+            
+            .subjects, .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
-
 <body>
-    <!-- العناصر العائمة للخلفية -->
-    <div class="floating-element" style="top:10%; left:5%;"></div>
-    <div class="floating-element" style="top:20%; right:8%; width: 80px; height: 80px;"></div>
-    <div class="floating-element" style="bottom:30%; left:15%; width: 40px; height: 40px;"></div>
-
-    <!-- الهيدر وأزرار التحكم -->
-    <div class="header-container">
-        <header>
-            <h1 class="main-title">📖 من نحن</h1>
-            <p class="subtitle">تعرف على منصة UnKnown التعليمية</p>
-        </header>
-        <div class="control-buttons">
-            <button class="btn theme-btn" id="themeButton">
-                <i class="fas fa-moon"></i> الوضع الليلي
-            </button>
-            <a href="index.html" class="btn back-btn">
-                <i class="fas fa-arrow-right"></i> العودة للرئيسية
-            </a>
-        </div>
+    <!-- الهيدر -->
+    <div class="header">
+        <h1>
+            <i class="fas fa-book"></i>
+            من نحن - UnKnown
+        </h1>
+        <p class="subtitle">منصة تعليمية لطلاب إدارة الأعمال (السنة الثالثة)</p>
     </div>
 
-    <!-- الصندوق الرئيسي -->
-    <div class="main-container">
-        <!-- بطاقة تعريف المنصة -->
-        <div class="identity-card">
-            <div class="platform-name">UnKnown</div>
-            <div class="platform-slogan">
-                منصة تعليمية رائدة تهدف إلى تمكين الطلاب والدارسين من خلال توفير ملخصات ومذكرات دراسية منظمة وعالية الجودة
-            </div>
-        </div>
+    <!-- أزرار التحكم -->
+    <div class="controls">
+        <button class="btn btn-primary" id="themeToggle">
+            <i class="fas fa-moon"></i>
+            تبديل الوضع
+        </button>
+        <a href="index.html" class="btn btn-secondary">
+            <i class="fas fa-home"></i>
+            الصفحة الرئيسية
+        </a>
+    </div>
 
-        <!-- قسم الرؤية -->
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <!-- الرؤية -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-eye"></i>
                 <span>رؤيتنا</span>
             </div>
             <div class="section-content">
-                نسعى إلى خلق بيئة تعليمية متميزة تسهل وصول الطلاب إلى المعرفة، وتوفر لهم الموارد التعليمية اللازمة لتحقيق التفوق الأكاديمي. نؤمن بأن التعليم الجيد يجب أن يكون متاحًا للجميع، ونسعى جاهدين لتقديم محتوى تعليمي يلبي احتياجات الطلاب في مختلف التخصصات.
+                نهدف إلى تمكين طلاب إدارة الأعمال من خلال توفير ملخصات دراسية منظمة وعالية الجودة للمواد الأساسية في السنة الثالثة.
             </div>
         </div>
 
-        <!-- قسم المميزات -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-star"></i>
-                <span>مميزات المنصة</span>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="feature-title">ملخصات منظمة</div>
-                    <div class="feature-desc">ملخصات دراسية منظمة ومنسقة لـ 8 مواد أكاديمية رئيسية</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-download"></i>
-                    </div>
-                    <div class="feature-title">سهولة التحميل</div>
-                    <div class="feature-desc">إمكانية تحميل المواد بسهولة وبصيغ مناسبة للاستخدام</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="feature-title">تصميم متجاوب</div>
-                    <div class="feature-desc">واجهة مستخدم متكاملة تعمل على جميع الأجهزة والشاشات</div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="feature-title">عمل جماعي</div>
-                    <div class="feature-desc">إسهامات متعددة من فريق عمل متميز لضمان جودة المحتوى</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- قسم المواد المتاحة -->
+        <!-- المواد -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-graduation-cap"></i>
                 <span>المواد المتاحة</span>
             </div>
             <div class="section-content">
-                تقدم منصة UnKnown ملخصات ومذكرات لثمانية مواد أكاديمية أساسية في مجال الإدارة والاقتصاد، تشمل:
-                <br><br>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📘 المحاسبة المتوسطة</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📗 الاقتصاد</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📕 الإحصاء الاستدلالي</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📙 المالية العامة</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📒 التسويق</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📔 العلوم السياسية</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📓 نظم المعلومات المحاسبية</div>
-                    <div style="background: rgba(46, 125, 50, 0.1); padding: 12px; border-radius: 8px; text-align: center;">📚 اللغة الإنجليزية</div>
+                نقدم ملخصات لثلاث مواد رئيسية:
+                <div class="subjects">
+                    <div class="subject">📘 التسويق</div>
+                    <div class="subject">📗 العلوم السياسية</div>
+                    <div class="subject">📕 المالية العامة</div>
                 </div>
             </div>
         </div>
 
-        <!-- قسم الرسالة -->
-        <div class="message-section">
-            <div class="message-title">رسالتنا إليكم</div>
-            <div class="message-content">
-                نعتقد أن النجاح الأكاديمي لا يجب أن يكون صعبًا. من خلال توفير موارد تعليمية جيدة التنظيم وسهلة الوصول، نهدف إلى تمكين كل طالب وطالبة من تحقيق أقصى استفادة من وقت الدراسة والتحضير للامتحانات. نحن هنا لندعم رحلتكم التعليمية ونساعدكم في الوصول إلى أهدافكم.
+        <!-- المميزات -->
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-star"></i>
+                <span>مميزات المنصة</span>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-file-pdf"></i>
+                    <div>ملخصات PDF</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-download"></i>
+                    <div>تحميل مجاني</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>متجاوب مع الجوال</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <div>مشاركة الطلاب</div>
+                </div>
             </div>
         </div>
 
-        <!-- قسم المؤسس -->
-        <div class="founder-card">
-            <div class="founder-icon">
-                <i class="fas fa-user-tie"></i>
-            </div>
-            <div class="founder-info">
-                <div class="founder-title">المؤسس والراعي</div>
-                <div class="founder-name">UnKnown</div>
-                <div class="founder-desc">
-                    مبادرة تعليمية أسسها طلاب وخرجون أكاديميون بهدف إثراء المحتوى التعليمي العربي وتسهيل الوصول إلى المعرفة. نعمل كمشروع غير ربحي يهدف إلى خدمة الطلاب والمجتمع الأكاديمي.
-                </div>
-            </div>
+        <!-- الرسالة -->
+        <div class="message">
+            <h3 style="margin-bottom: 10px;">رسالتنا إليكم</h3>
+            <p>نسعى لمساعدتكم في رحلتكم الدراسية وتوفير الوقت والجهد في تجميع المواد الدراسية.</p>
+        </div>
+
+        <!-- المؤسس -->
+        <div class="founder">
+            <i class="fas fa-user-tie" style="font-size: 40px; color: var(--primary);"></i>
+            <div class="founder-name">فريق UnKnown</div>
+            <p>مبادرة طلابية تهدف لخدمة المجتمع الأكاديمي ونشر المعرفة.</p>
         </div>
     </div>
 
     <script>
         // تبديل الوضع الليلي
-        const themeButton = document.getElementById('themeButton');
-        const body = document.body;
-        
-        // التحقق من التفضيل المحفوظ
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            themeButton.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
-        }
-        
-        themeButton.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-                themeButton.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-                themeButton.innerHTML = '<i class="fas fa-moon"></i> الوضع الليلي';
-            }
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = this.querySelector('i');
+            icon.className = document.body.classList.contains('dark-mode') ? 
+                'fas fa-sun' : 
+                'fas fa-moon';
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         });
 
-        // تأثيرات الظهور عند التمرير
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.section, .feature-card, .message-section, .founder-card');
-            const scrollPosition = window.scrollY;
-            
-            sections.forEach((section, index) => {
-                const sectionPosition = section.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (sectionPosition < screenPosition) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                    section.style.transitionDelay = `${index * 0.1}s`;
-                }
-            });
-        });
-        
-        // تهيئة تأثيرات الظهور
+        // تحميل الوضع المحفوظ
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section, .feature-card, .message-section, .founder-card');
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            });
-            
-            // تشغيل تأثير بعد تحميل الصفحة
-            setTimeout(() => {
-                window.dispatchEvent(new Event('scroll'));
-            }, 300);
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+            }
         });
     </script>
 </body>
