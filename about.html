@@ -11,9 +11,9 @@
             --primary: #2e7d32;
             --primary-light: #4caf50;
             --primary-dark: #1b5e20;
-            --secondary: #f5f5f5;
             --text: #333;
-            --card-bg: #ffffff;
+            --bg: #f8f9fa;
+            --card: #ffffff;
             --shadow: rgba(0,0,0,0.1);
         }
 
@@ -21,9 +21,9 @@
             --primary: #4caf50;
             --primary-light: #66bb6a;
             --primary-dark: #388e3c;
-            --secondary: #2d2d2d;
-            --text: #f5f5f5;
-            --card-bg: #3a3a3a;
+            --text: #f0f0f0;
+            --bg: #1a1a1a;
+            --card: #2d2d2d;
             --shadow: rgba(0,0,0,0.3);
         }
 
@@ -35,54 +35,50 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            background: var(--bg);
             color: var(--text);
             min-height: 100vh;
             padding: 20px;
             transition: all 0.3s;
+            line-height: 1.6;
         }
 
-        body.dark-mode {
-            background: linear-gradient(135deg, #1a381b, #0d1f0e);
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         /* الهيدر */
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
+            margin: 20px 0 30px;
         }
 
         .header h1 {
-            font-size: 36px;
+            font-size: 2.5rem;
             color: var(--primary-dark);
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
-        .subtitle {
+        .header p {
             color: var(--primary);
-            font-size: 16px;
-            opacity: 0.8;
+            font-size: 1.1rem;
         }
 
         /* أزرار التحكم */
         .controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 30px;
             flex-wrap: wrap;
         }
 
         .btn {
             padding: 10px 20px;
-            border-radius: 50px;
+            border-radius: 25px;
             border: none;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Tajawal';
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -90,60 +86,45 @@
             align-items: center;
             gap: 8px;
             text-decoration: none;
-        }
-
-        .btn-primary {
             background: var(--primary);
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* المحتوى الرئيسي */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--card-bg);
+        /* المحتوى */
+        .content {
+            background: var(--card);
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 5px 20px var(--shadow);
+            box-shadow: 0 5px 15px var(--shadow);
             border-top: 5px solid var(--primary);
         }
 
-        /* الأقسام */
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .section-title {
-            font-size: 24px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-light);
+            font-size: 1.4rem;
         }
 
-        .section-content {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text);
+        .section p {
+            margin-bottom: 10px;
         }
 
         /* المواد */
@@ -151,7 +132,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .subject {
@@ -159,12 +140,12 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
-            font-weight: 600;
             transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .subject:hover {
-            background: rgba(46, 125, 50, 0.2);
+            border-color: var(--primary);
             transform: translateY(-3px);
         }
 
@@ -173,21 +154,20 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .feature {
             text-align: center;
             padding: 15px;
-            background: var(--card-bg);
+            background: var(--card);
             border-radius: 10px;
-            box-shadow: 0 3px 10px var(--shadow);
-            border: 1px solid rgba(46, 125, 50, 0.1);
+            border: 1px solid rgba(46, 125, 50, 0.2);
         }
 
         .feature i {
-            font-size: 30px;
             color: var(--primary);
+            font-size: 2rem;
             margin-bottom: 10px;
         }
 
@@ -195,7 +175,7 @@
         .message {
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
             text-align: center;
@@ -203,30 +183,24 @@
 
         /* المؤسس */
         .founder {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
             text-align: center;
-            border: 2px solid var(--primary);
+            padding: 20px;
+            border-top: 2px solid var(--primary-light);
             margin-top: 20px;
         }
 
-        .founder-name {
-            font-size: 24px;
+        .founder h3 {
             color: var(--primary);
-            font-weight: 700;
-            margin: 10px 0;
+            margin-bottom: 10px;
         }
 
         /* التجاوب */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 28px;
-                flex-direction: column;
-                gap: 10px;
+                font-size: 2rem;
             }
             
-            .container {
+            .content {
                 padding: 20px;
             }
             
@@ -247,93 +221,81 @@
     </style>
 </head>
 <body>
-    <!-- الهيدر -->
-    <div class="header">
-        <h1>
-            <i class="fas fa-book"></i>
-            من نحن - UnKnown
-        </h1>
-        <p class="subtitle">منصة تعليمية لطلاب إدارة الأعمال (السنة الثالثة)</p>
-    </div>
-
-    <!-- أزرار التحكم -->
-    <div class="controls">
-        <button class="btn btn-primary" id="themeToggle">
-            <i class="fas fa-moon"></i>
-            تبديل الوضع
-        </button>
-        <a href="index.html" class="btn btn-secondary">
-            <i class="fas fa-home"></i>
-            الصفحة الرئيسية
-        </a>
-    </div>
-
-    <!-- المحتوى الرئيسي -->
     <div class="container">
-        <!-- الرؤية -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-eye"></i>
-                <span>رؤيتنا</span>
-            </div>
-            <div class="section-content">
-                نهدف إلى تمكين طلاب إدارة الأعمال من خلال توفير ملخصات دراسية منظمة وعالية الجودة للمواد الأساسية في السنة الثالثة.
-            </div>
+        <!-- الهيدر -->
+        <div class="header">
+            <h1><i class="fas fa-book"></i> من نحن</h1>
+            <p>منصة UnKnown التعليمية - طلاب إدارة الأعمال</p>
         </div>
 
-        <!-- المواد -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-graduation-cap"></i>
-                <span>المواد المتاحة</span>
+        <!-- أزرار التحكم -->
+        <div class="controls">
+            <button class="btn" id="themeToggle">
+                <i class="fas fa-moon"></i> تبديل الوضع
+            </button>
+            <a href="index.html" class="btn">
+                <i class="fas fa-home"></i> الرئيسية
+            </a>
+        </div>
+
+        <!-- المحتوى -->
+        <div class="content">
+            <!-- الرؤية -->
+            <div class="section">
+                <h2><i class="fas fa-eye"></i> رؤيتنا</h2>
+                <p>نسعى لتمكين طلاب إدارة الأعمال من خلال توفير ملخصات دراسية منظمة للمواد الأساسية.</p>
             </div>
-            <div class="section-content">
-                نقدم ملخصات لثلاث مواد رئيسية:
+
+            <!-- المواد -->
+            <div class="section">
+                <h2><i class="fas fa-graduation-cap"></i> المواد المتاحة</h2>
+                <p>نقدم ملخصات لثلاث مواد رئيسية:</p>
                 <div class="subjects">
                     <div class="subject">📘 التسويق</div>
                     <div class="subject">📗 العلوم السياسية</div>
                     <div class="subject">📕 المالية العامة</div>
                 </div>
             </div>
-        </div>
 
-        <!-- المميزات -->
-        <div class="section">
-            <div class="section-title">
-                <i class="fas fa-star"></i>
-                <span>مميزات المنصة</span>
-            </div>
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-file-pdf"></i>
-                    <div>ملخصات PDF</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-download"></i>
-                    <div>تحميل مجاني</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-mobile-alt"></i>
-                    <div>متجاوب مع الجوال</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-users"></i>
-                    <div>مشاركة الطلاب</div>
+            <!-- المميزات -->
+            <div class="section">
+                <h2><i class="fas fa-star"></i> مميزاتنا</h2>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-file-pdf"></i>
+                        <div>ملخصات PDF</div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-download"></i>
+                        <div>تحميل مجاني</div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>تصميم متجاوب</div>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <div>مشاركة الطلاب</div>
+                    </div>
                 </div>
             </div>
+
+            <!-- الرسالة -->
+            <div class="message">
+                <h3>رسالتنا إليكم</h3>
+                <p>نساعدكم في رحلتكم الدراسية ونوفر الوقت والجهد في تجميع المواد.</p>
+            </div>
+
+            <!-- المؤسس -->
+            <div class="founder">
+                <h3><i class="fas fa-user-tie"></i> فريق UnKnown</h3>
+                <p>مبادرة طلابية تهدف لخدمة المجتمع الأكاديمي ونشر المعرفة.</p>
+            </div>
         </div>
 
-        <!-- الرسالة -->
-        <div class="message">
-            <h3 style="margin-bottom: 10px;">رسالتنا إليكم</h3>
-            <p>نسعى لمساعدتكم في رحلتكم الدراسية وتوفير الوقت والجهد في تجميع المواد الدراسية.</p>
-        </div>
-
-        <!-- المؤسس -->
-        <div class="founder">
-            <i class="fas fa-user-tie" style="font-size: 40px; color: var(--primary);"></i>
-            <div class="founder-name">فريق UnKnown</div>
-            <p>مبادرة طلابية تهدف لخدمة المجتمع الأكاديمي ونشر المعرفة.</p>
+        <!-- حقوق النشر -->
+        <div style="text-align: center; margin-top: 30px; color: var(--text); opacity: 0.7; font-size: 0.9rem;">
+            © 2024 UnKnown - جميع الحقوق محفوظة
         </div>
     </div>
 
@@ -349,12 +311,10 @@
         });
 
         // تحميل الوضع المحفوظ
-        document.addEventListener('DOMContentLoaded', function() {
-            if (localStorage.getItem('darkMode') === 'true') {
-                document.body.classList.add('dark-mode');
-                document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
-            }
-        });
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
     </script>
 </body>
 </html>
