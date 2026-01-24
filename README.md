@@ -1,4 +1,4 @@
-### **📌 `README.md` - دليل المستخدم لموقع Summaries & Notes**  
+### **📌 `README.md` - دليل المستخدم لموقع Business**  
 هذا الملف يوضح **كيفية استخدام المشروع، تشغيله، وتعديله**.  
 
 ---
@@ -26,11 +26,9 @@ It features an **interactive design**, **dark mode switch**, and **smooth animat
 
 ## 📂 Project Structure  
 ```
-Summaries-and-Notes/
+Business/
 │── index.html        # Home page with subjects
 │── about.html        # About page with site details
-│── script.js         # JavaScript file for interactivity
-│── style.css         # Styling for the site
 │── README.md         # This guide
 └── subjects/         # Folder containing lecture notes
 ```
@@ -57,7 +55,7 @@ git clone https://github.com/YOUR_USERNAME/Summaries-and-Notes.git
 ---
 
 ## 👤 Founder  
-Created by: **YOUR NAME**  
+Created by: **youssef**  
 
 ---
 
