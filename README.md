@@ -7,10 +7,10 @@
 
 
 ```md
-# 📚 Summaries & Notes
+# 📚 Business
 
 ## 🌟 Overview  
-Summaries & Notes is a **modern, elegant, and responsive** website designed for students to **download lecture notes** for various subjects.  
+Business is a **modern, elegant, and responsive** website designed for students to **download lecture notes** for various subjects.  
 It features an **interactive design**, **dark mode switch**, and **smooth animations** to enhance the user experience.
 
 ---
@@ -39,7 +39,7 @@ Business/
 
 1️⃣ **Clone the repository:**  
 ```sh
-git clone https://github.com/YOUR_USERNAME/Summaries-and-Notes.git
+git clone https://github.com/Business/Summaries-and-Notes.git
 ```
 
 2️⃣ **Open `index.html` in a browser** and enjoy the site! 🚀
